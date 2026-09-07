@@ -1,0 +1,18 @@
+codehealth/
+├── codehealth/
+│   ├── __init__.py
+│   ├── scanner.py         # Step 1: walks files, calls analyzer, collects raw stats
+│   ├── analyzer.py        # Step 2: ast-based parsing (long funcs, unused imports)
+│   ├── watcher.py         # Step 3: watchdog-based folder watcher, triggers re-scan
+│   ├── storage.py         # Step 4: SQLite read/write for scan history
+│   ├── scoring.py         # Turns raw stats into a "health score" per file/project
+│   └── api.py             # Step 5: FastAPI endpoints serving scores/history as JSON
+├── frontend/
+│   └── index.html         # Step 5: simple dashboard, charts via Chart.js
+├── data/
+│   └── codehealth.db      # SQLite file (created at runtime, not committed)
+├── tests/
+│   └── test_analyzer.py   # Test your ast logic against known-messy sample files
+├── main.py                # Entrypoint: wires scanner+watcher+api together
+├── requirements.txt
+└── README.md
