@@ -27,10 +27,14 @@ def scoring_system(result: dict) -> tuple[float, dict[str, float]]:
     score_breakdown["long_function"] = long_function_count * WEIGHTS["long_function"]
 
     unused_import_count = issue_counts.get("unused_import", 0)
-    billable_imports = max(0, unused_import_count - 1)  # first one's free
+    billable_imports = max(0, unused_import_count - 1)  
     score_breakdown["unused_import"] = billable_imports * WEIGHTS["unused_import"]
 
     total_penalty = sum(score_breakdown.values())
     total_score = max(0.0, min(100.0, 100.0 - total_penalty))
+    return(print(score_breakdown,total_score ))
 
-    return total_score, score_breakdown
+
+
+
+
