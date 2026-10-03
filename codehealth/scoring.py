@@ -34,7 +34,4 @@ def scoring_system(result: dict) -> tuple[float, dict[str, float]]:
     total_score = max(0.0, min(100.0, 100.0 - total_penalty))
     return(print(score_breakdown,total_score ))
 
-
-
-
-
+    

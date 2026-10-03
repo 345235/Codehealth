@@ -22,18 +22,17 @@ def find_long_functions(tree: ast.AST, max_lines: int = 50) -> list[dict]:
 
 def find_unused_imports(tree: ast.AST) -> list[dict]:
     """Return one issue dict per imported name that's never referenced."""
-    imported_names = {}  # name -> line it was imported on
+    imported_names = {}  
 
     for node in ast.walk(tree):
         if isinstance(node, ast.Import):
             for alias in node.names:
-                # "import os.path" binds the name "os", not "os.path"
                 name = alias.asname or alias.name.split(".")[0]
                 imported_names[name] = node.lineno
         elif isinstance(node, ast.ImportFrom):
             for alias in node.names:
                 if alias.name == "*":
-                    continue  # can't track usage of a star import
+                    continue 
                 name = alias.asname or alias.name
                 imported_names[name] = node.lineno
 
